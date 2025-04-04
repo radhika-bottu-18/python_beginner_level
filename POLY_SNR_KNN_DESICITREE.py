@@ -91,3 +91,10 @@ regressor = RandomForestRegressor(criterion='absolute_error',n_estimators=10,max
 regressor.fit(x,y)
 random_pred= regressor.predict([[6.5]])
 print('Random Forest prediction = ',random_pred)
+
+from lazypredict.Supervised import LazyRegressor
+from sklearn.model_selection import train_test_split
+lazy_reg = LazyRegressor(verbose=0, ignore_warnings=False, custom_metric=None)
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.5,random_state=0)
+models,predictions= lazy_reg.fit(x_train,x_test,y_train,y_test)
+
